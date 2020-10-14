@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/08 09:41:49 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:17:58 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ void	free_filter(char **argument, t_var fd, t_lst *lst)
 	ft_lstclear(&lst);
 }
 
+int		check_chev(char **argument)
+{
+	if (argument[0][0] == '>' || argument[0][0] == '<')
+		write(1, "minishell: syntax error near unexpected token `newline'\n", 57);
+	return (1);
+}
+
 int		filter(char *commande, char ***env)
 {
 	char	**argument;
@@ -90,8 +97,10 @@ int		filter(char *commande, char ***env)
 		if (ft_strncmp(argument[i], ">", 1))
 			ft_lstadd_back(&lst, ft_lstnew(argument[i]));
 		else
-			while (!ft_strncmp(argument[i], ">", 1))
+			while (argument[i] && !ft_strncmp(argument[i], ">", 1))
 				i++;
+		if (!argument[i] && check_chev(argument))
+			break ;
 	}
 	ft_lstadd_back(&lst, NULL);
 	filter2(fd, argument, lst, env);

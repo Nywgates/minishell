@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:43 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/07 16:58:43 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:52:07 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,8 @@ void	exec_fils(t_lst *lst, char *my_path, char **flags, t_var var)
 	if (built_in(lst, var))
 		return ;
 	else if (my_path && execve(my_path, flags, var.env) == -1)
+	{
 		perror("execve\n");
+		exit(1);
+	}
 }

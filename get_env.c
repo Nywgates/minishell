@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/08 15:33:14 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:44:11 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		dollar_var(char **arg, int i, int n, char **env)
 	(void)len;
 	name = get_name(&(arg[i])[n + 1]);
 	content = get_env(name, env);
-	if (content)
+	if (content && arg[i][n + 1] != '"')
 	{
 		tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), content[1], 1);
 		len = ft_strlen(content[0]);
@@ -81,7 +81,7 @@ void		ft_env(char **arg, char **env)
 				if (!arg[i][n])
 					break ;
 			}
-			if (arg[i][n] == '$' && arg[i][n + 1] && arg[i][n + 1] != '"')
+			if (arg[i][n] == '$' && arg[i][n + 1])
 			{
 				ft_env2(arg, i, n, env);
 				n = -1;

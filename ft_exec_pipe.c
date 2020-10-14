@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 08:57:02 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:35:06 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ int		err_pipe(t_lst *lst, char **my_path)
 		if (!ft_strncmp(lst->maillon, "|", 1))
 		{
 			g_stt = 258;
-			return (ft_error("minishell: syntax error \
-				near unexpected token `|'\n", 1));
+			return (ft_error("minishell: syntax error near \
+unexpected token `|'\n", 1));
 		}
 		ft_putstr_fd("minishell: ", 1);
 		ft_putstr_fd(lst->maillon, 1);
+		g_stt = 127;
 		return (ft_error(" :command not found\n", 1));
 	}
 	return (0);

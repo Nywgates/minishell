@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/08 15:34:32 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:56:53 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,39 @@ void	cmd(char *commande, char ***env)
 	}
 }
 
+int		check_error(char ***commande, char *line)
+{
+	int i;
+	int n;
+	
+	n = 0;
+	i = 0;
+	if (ft_strlen(line) == 1 && line[0] == 32)
+	{
+		write(1, "minishell>", 11);
+		return (0);
+	}
+	while (line[i])
+	{
+		if (line[i] == ';')
+		{
+			n = i - 1;
+			while (n > -1 && line[n] == ' ')
+				n--;
+			if (i == 0 || line[n] == ';')
+			{
+				write(1, "bash: syntax error near unexpected token ';'\n", 46);
+				g_stt = 258;
+				write(1, "minishell>", 11);
+				return (0);
+			}
+		}
+		i++;
+	}
+	*commande = ft_split_mini(line, ';');
+	return (1);
+}
+
 int		main(void)
 {
 	char		**commande;
@@ -67,7 +100,8 @@ int		main(void)
 	g_gpid = 0;
 	while ((retour = get_next_line(1, &line)) > 0)
 	{
-		commande = ft_split_mini(line, ';');
+		if (!check_error(&commande, line))
+			continue ;
 		i = -1;
 		while (commande[++i])
 			cmd(commande[i], &env);

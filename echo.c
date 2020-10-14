@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/08 08:17:17 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:45:58 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ int		print_echo(t_lst *lst, t_var fd)
 	}
 	help_echo(argument, fd, no, i);
 	free_dbl_ptr(argument);
-	g_storestt = 0;
+	g_stt = 0;
 	return (0);
 }

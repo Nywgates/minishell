@@ -6,7 +6,7 @@
 /*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/08 10:24:06 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:36:00 by qgimenez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		ft_exit(char **argument)
 	if (argument[1] && argument[2])
 	{
 		ft_putstr_fd("bash: exit: too many argument\n", 2);
+		g_stt = 1;
 		return (0);
 	}
 	if (argument[1])
