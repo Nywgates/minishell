@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:51:00 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 20:10:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 20:19:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,6 @@ char	**last_wave(char **no_flag, char *flag)
 		no_flag[1][0] = '\0';
 	free(flag);
 	return (no_flag);
-}
-
-void	replace_pipe(char **flag)
-{
-	int i;
-
-	i = 0;
-	while (*flag[i])
-	{
-		if (*flag[i] == 27)
-			*flag[i] = '|';
-		i++;
-	}
 }
 
 char	**capture_the_flag(t_lst *lst, char *my_path)
