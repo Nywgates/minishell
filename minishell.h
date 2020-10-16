@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:27:04 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:39:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ void			bs_dbquote2(int *i, char *mem, char *aux, int *n);
 int				chev_r_after_quote(char **argument, int i, t_var *fd, int n);
 int				rt_read(int ret, char **buf);
 int				check_chev(char **argument);
-int				check_error2(void);
+int				error_token(char *line);
+int				skip_quote(char *line, int *i);
+int				check_blank(char *line);
 
 #endif

@@ -6,19 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:09:27 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 09:26:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:39:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int		check_error2(void)
-{
-	write(1, "bash: syntax error near unexpected token ';'\n", 46);
-	g_stt = 258;
-	write(1, "minishell>", 11);
-	return (0);
-}
 
 int		ft_check_in(char *str, char c)
 {

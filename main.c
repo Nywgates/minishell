@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:33:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:38:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,24 @@ void	cmd(char *commande, char ***env)
 
 int		check_error(char ***commande, char *line)
 {
-	int i;
-	int n;
+	int		i;
+	int		n;
 
 	n = 0;
 	i = 0;
-	if (ft_strlen(line) == 1 && line[0] == 32)
-	{
-		write(1, "minishell>", 11);
+	if (!check_blank(line))
 		return (0);
-	}
 	while (line[i])
 	{
+		if (!skip_quote(line, &i))
+			break ;
 		if (line[i] == ';')
 		{
 			n = i - 1;
 			while (n > -1 && line[n] == ' ')
 				n--;
 			if (i == 0 || line[n] == ';')
-				return (check_error2());
+				return (error_token(line));
 		}
 		i++;
 	}
