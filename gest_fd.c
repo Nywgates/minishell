@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 15:55:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:31:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 {
 	if (arg[i][0] == '>')
 	{
-		if (fd->fd_out[n] != -1)
+		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
 		if (arg[i + 1][0] == '>' && arg[i + 2][0] == '>')
 			return (ft_error(
