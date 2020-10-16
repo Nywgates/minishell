@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 16:57:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 22:18:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		chev_r_after_quote(char **argument, int i, t_var *fd, int n)
 		j++;
 	if (aux[j] && aux[j][0] == '>')
 	{
-		if (fd->fd_out[n] != -1)
+		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
 		free(argument[i]);
 		argument[i] = ft_substr(aux[0], 0, ft_strlen(aux[0]));
