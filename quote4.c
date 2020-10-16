@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:27:30 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 14:29:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 21:45:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*bs_dbquote(char *aux, char *mem, int *i)
 		n = 0;
 		while (str[n])
 		{
-			if (str[n] == '\\' && c(str[n + 1], "\\'\""))
+			if (str[n] == '\\' && c(str[n + 1], "\\\""))
 				bs_dbquote3(&str, &tmp, &n);
 			else
 				n++;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 11:41:26 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/12 15:41:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 22:01:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,10 @@ void			split_mini_help(char const **curseur,\
 		{
 			if (*(*curseur) == '\'' || *(*curseur) == '"')
 			{
-				if (!(*bool))
-				{
-					(*bool) = 1;
-					(*mem) = *(*curseur);
-				}
-				else if (*(*curseur) == (*mem))
-				{
-					(*bool) = 0;
-					(*mem) = '\0';
-				}
+				*mem = *(*curseur);
+				(*curseur)++;
+				while (*(*curseur) && *(*curseur) != *mem)
+					(*curseur)++;
 			}
 			(*curseur)++;
 		}
