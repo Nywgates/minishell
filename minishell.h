@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 17:20:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:57:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,4 +172,10 @@ void			ft_env_bis(char **arg, int i, int n, char **env);
 void			ft_env2(char **arg, int i, int n, char **env);
 int				free_env(char **env, char *line);
 void			ft_exit2(int i);
+void			ft_exit3(int i, char **flags, char *my_path);
+int				g_save_ret(char *save);
+void			filter_bis(t_lst *lst, t_var fd, char **argument, char ***env);
+void			free_filter(char **argument, t_var fd, t_lst *lst);
+int				filter2(t_var fd, char **argument, t_lst *lst, char ***env);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 17:17:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:55:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,5 @@ void	filter(char *commande, char ***env)
 			break ;
 	}
 	ft_lstadd_back(&lst, NULL);
-	g_lst = lst;
-	filter2(fd, argument, lst, env);
-	free_filter(argument, fd, lst);
+	filter_bis(lst, fd, argument, env);
 }

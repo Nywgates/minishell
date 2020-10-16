@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 09:54:59 by user42            #+#    #+#             */
-/*   Updated: 2020/10/12 15:14:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:41:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,10 @@ int		rt_read(int ret, char **buf)
 {
 	free(*buf);
 	return (ret);
+}
+
+int		g_save_ret(char *save)
+{
+	g_save = save;
+	return (1);
 }

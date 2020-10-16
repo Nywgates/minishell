@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 09:16:16 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 16:22:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:40:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ int		get_next_line(int fd, char **line)
 			tmp = save;
 			save = ft_substr(save, find_pos(cursor, save) + 1, ft_strlen(save));
 			free(tmp);
-			g_save = save;
-			return (1);
+			return (g_save_ret(save));
 		}
 		ret = read_line(fd, &tmp);
 		ft_save_copy(&cursor, &save, &tmp, line);

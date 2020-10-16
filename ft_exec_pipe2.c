@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:43 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 15:50:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:58:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	ft_wait_pid(t_fils *fiston, char *name)
 {
 	int		status;
 	t_fils	*tmp;
-	(void)status;
-	(void)name;
+
 	tmp = fiston;
 	while (fiston)
 	{
