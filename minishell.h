@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 14:58:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:17:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,12 @@ int				g_sigbool;
 int				g_stt;
 int				g_storestt;
 int				g_gpid;
+char			**g_env;
+char			**g_cmd;
+char			**g_arg;
+t_var			g_fd;
+t_lst			*g_lst;
+char			**g_line;
 
 char			*get_path(char *home, char *argument);
 char			*get_current(char *home);

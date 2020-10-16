@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:43 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 10:52:07 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 15:50:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	ft_wait_pid(t_fils *fiston, char *name)
 {
 	int		status;
 	t_fils	*tmp;
-
+	(void)status;
+	(void)name;
 	tmp = fiston;
 	while (fiston)
 	{

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:56:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:17:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,21 @@ void	free_dbl_ptr(char **ptr)
 	free(ptr);
 }
 
+void	ft_exit2()
+{
+	free_dbl_ptr(g_arg);
+	ft_lstclear(&g_lst);
+	free(g_fd.fd_out);
+	free(g_fd.fd_in);
+	free_dbl_ptr(g_cmd);
+	//free(*g_line);
+	while (*g_env)
+	{
+		free(*g_env);
+		g_env++;
+	}
+}
+
 int		ft_exit(char **argument)
 {
 	int i;
@@ -81,6 +96,7 @@ int		ft_exit(char **argument)
 			ft_putstr_fd("bash: exit: ", 2);
 			ft_putstr_fd(argument[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
+			ft_exit2();
 			exit(2);
 		}
 		i++;
@@ -92,7 +108,13 @@ int		ft_exit(char **argument)
 		return (0);
 	}
 	if (argument[1])
+	{
+		ft_exit2();
 		exit(ft_atoi(argument[1]));
+	}
 	else
+	{
+		ft_exit2();
 		exit(1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 13:25:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 15:54:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	filter(char *commande, char ***env)
 
 	i = -1;
 	argument = ft_set_split(commande, " <>|", "<>|");
+	g_arg = argument;
 	lst = NULL;
 	ft_env(argument, *env);
 	fd = fdp(argument);
@@ -96,6 +97,7 @@ void	filter(char *commande, char ***env)
 			break ;
 	}
 	ft_lstadd_back(&lst, NULL);
+	g_lst = lst;
 	filter2(fd, argument, lst, env);
 	free_filter(argument, fd, lst);
 }

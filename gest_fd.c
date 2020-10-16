@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 13:23:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 15:55:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	fdp_2(t_var *fd, char **argument)
 		fd->fd_out[i] = -2;
 	fd->pos = 0;
 	fd->error = 0;
+	fd->pid = 0;
 	if (!get_fd(argument, fd))
 		fd->error = 1;
 	i = -1;
@@ -108,6 +109,7 @@ t_var	fdp(char **argument)
 		fd.fd_out[i] = -2;
 	fd.fd_in = malloc(sizeof(int) * (nbr_left(argument) + 1));
 	fd.pos = 0;
+	fd.pid = 0;
 	fd.error = 0;
 	fd.argument = argument;
 	if (!get_fd(argument, &fd))
@@ -118,5 +120,6 @@ t_var	fdp(char **argument)
 		if (fd.fd_out[i] == -2)
 			fd.fd_out[i] = 1;
 	}
+	g_fd = fd;
 	return (fd);
 }

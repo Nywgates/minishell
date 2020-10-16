@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 14:58:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:17:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	get_environ(char ***env)
 		(*env)[i] = ft_substr((*env)[i], 0, ft_strlen((*env)[i]));
 		i++;
 	}
+	g_env = *env;
 }
 
 void	cmd(char *commande, char ***env)
@@ -59,6 +60,7 @@ int		check_error(char ***commande, char *line)
 
 	n = 0;
 	i = 0;
+	g_line = &line;
 	if (!check_blank(line))
 		return (0);
 	while (line[i])
@@ -76,6 +78,8 @@ int		check_error(char ***commande, char *line)
 		i++;
 	}
 	*commande = ft_split_mini(line, ';');
+	g_cmd = *commande;
+	free(line);
 	return (1);
 }
 
@@ -99,7 +103,6 @@ int		main(void)
 		i = -1;
 		while (commande[++i])
 			cmd(commande[i], &env);
-		free(line);
 		free_dbl_ptr(commande);
 		ft_putstr_fd("minishell>", 1);
 	}
