@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:26:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:33:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		check_error(char ***commande, char *line)
 			while (n > -1 && line[n] == ' ')
 				n--;
 			if (i == 0 || line[n] == ';')
-				return (check_error2(void));
+				return (check_error2());
 		}
 		i++;
 	}
