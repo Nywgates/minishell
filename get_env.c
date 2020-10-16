@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 13:52:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 14:27:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static void	ft_free(char **content, char *name, char *tmp)
 		free(content[1]);
 		free(content);
 	}
-	free(name);
-	free(tmp);
+	if (name)
+		free(name);
+	if (tmp)
+		free(tmp);
 }
 
 void		dollar_var(char **arg, int i, int n, char **env)
@@ -37,7 +39,8 @@ void		dollar_var(char **arg, int i, int n, char **env)
 		tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), content[1], 1);
 	else
 		tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), "\0", 1);
-	tmp2 = ft_strjoin_free(tmp, ft_substr(arg[i], n + ft_strlen(name) + 1, ft_strlen(&arg[i][n + ft_strlen(name)])), 2);
+	tmp2 = ft_strjoin_free(tmp, ft_substr(arg[i], n + ft_strlen(name) + 1,
+	ft_strlen(&arg[i][n + ft_strlen(name)])), 2);
 	ft_free(content, name, tmp);
 	free(arg[i]);
 	arg[i] = tmp2;
@@ -67,19 +70,19 @@ void		ft_env(char **arg, char **env)
 		n = -1;
 		while (arg[i][++n])
 		{
-			if (arg[i][n] == '\'')
+			if (arg[i][n] == '\'' || arg[i][n] == '\"')
 			{
 				mem = arg[i][n++];
 				while (arg[i][n] && arg[i][n] != mem)
+				{
+					if (mem == '\"')
+						ft_env_tri(arg, i, n, env);
 					n++;
+				}
 				if (!arg[i][n])
 					break ;
 			}
-			if (arg[i][n] == '$' && arg[i][n + 1])
-			{
-				ft_env2(arg, i, n, env);
-				n = -1;
-			}
+			ft_env_bis(arg, i, n, env);
 		}
 	}
 }

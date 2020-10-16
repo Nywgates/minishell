@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4cd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/02 09:59:29 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 14:58:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,16 @@ int			print_cd(char **argument)
 	}
 	free(home);
 	g_stt = 0;
+	return (1);
+}
+
+int		free_env(char **env, char *line)
+{
+	free(line);
+	while (*env)
+	{
+		free(*env);
+		env++;
+	}
 	return (1);
 }

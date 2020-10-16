@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:27:30 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 11:22:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 14:29:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ char	*bs_dbquote(char *aux, char *mem, int *i)
 		tmp = ft_strjoin("", "\032\0");
 	(*i)++;
 	str = tmp;
-	if (*mem == '\'')
-		return (tmp);
-	else
+	if (*mem != '\'')
 	{
 		n = 0;
 		while (str[n])
@@ -46,8 +44,8 @@ char	*bs_dbquote(char *aux, char *mem, int *i)
 			else
 				n++;
 		}
-		return (tmp);
 	}
+	return (tmp);
 }
 
 void	dedel2(char **res, char **aux, int *i)

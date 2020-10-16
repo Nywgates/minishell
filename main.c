@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:38:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 14:58:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int		main(void)
 		ft_putstr_fd("minishell>", 1);
 	}
 	ft_putstr_fd("exit\n", 1);
-	exit(1);
+	exit(free_env(env, line));
 	return (0);
 }
