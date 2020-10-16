@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:30:01 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/08 07:52:54 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:52:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		dollar_inte(char **arg, int i, int n)
 	char	*tmp;
 	char	*tmp2;
 
-	tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), ft_itoa(g_stt), 1);
+	tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), ft_itoa(g_stt), 3);
 	tmp2 = ft_strjoin_free(tmp, ft_substr(arg[i], n + 2,
 	ft_strlen(&arg[i][n + 1])), 2);
 	free(tmp);

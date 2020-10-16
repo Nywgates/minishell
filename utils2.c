@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 09:10:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:56:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		ft_exit(char **argument)
 			ft_putstr_fd("bash: exit: ", 2);
 			ft_putstr_fd(argument[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
-			exit(255);
+			exit(2);
 		}
 		i++;
 	}
