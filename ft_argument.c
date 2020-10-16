@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:51:00 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 11:01:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 11:17:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	**last_wave(char **no_flag, char *flag)
 {
 	free_dbl_ptr(no_flag);
 	no_flag = ft_set_split(flag, "ę<", "");
+	if (no_flag[1][0] == 26)
+		no_flag[1][0] = '\0';
 	free(flag);
 	return (no_flag);
 }

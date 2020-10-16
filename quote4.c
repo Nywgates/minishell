@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:27:30 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 10:58:57 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 11:16:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,14 @@ char	*bs_dbquote(char *aux, char *mem, int *i)
 
 	*mem = aux[*i];
 	bs_dbquote2(i, mem, aux, &n);
-	tmp = ft_substr(aux, n, *i - n);
+	if (*i - n != 0)
+		tmp = ft_substr(aux, n, *i - n);
+	else
+	{
+		tmp = malloc(sizeof(char) * 2);
+		tmp[0] = 26;
+		tmp[1] = 0;
+	}
 	(*i)++;
 	str = tmp;
 	if (*mem == '\'')
