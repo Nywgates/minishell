@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 11:17:58 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:10:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,7 @@ void	free_filter(char **argument, t_var fd, t_lst *lst)
 	ft_lstclear(&lst);
 }
 
-int		check_chev(char **argument)
-{
-	if (argument[0][0] == '>' || argument[0][0] == '<')
-		write(1, "minishell: syntax error near unexpected token `newline'\n", 57);
-	return (1);
-}
-
-int		filter(char *commande, char ***env)
+void	filter(char *commande, char ***env)
 {
 	char	**argument;
 	t_var	fd;
@@ -91,7 +84,7 @@ int		filter(char *commande, char ***env)
 	ft_env(argument, *env);
 	fd = fdp(argument);
 	if (fd.error == 1)
-		return (0);
+		return ;
 	while (argument[++i])
 	{
 		if (ft_strncmp(argument[i], ">", 1))
@@ -105,5 +98,4 @@ int		filter(char *commande, char ***env)
 	ft_lstadd_back(&lst, NULL);
 	filter2(fd, argument, lst, env);
 	free_filter(argument, fd, lst);
-	return (0);
 }

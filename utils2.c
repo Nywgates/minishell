@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 11:36:00 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:10:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		check_chev(char **argument)
+{
+	if (argument[0][0] == '>' || argument[0][0] == '<')
+	{
+		write(1, "minishell: syntax error near ", 29);
+		write(1, "unexpected token `newline'\n", 27);
+	}
+	return (1);
+}
 
 void	double_free(char *s1, char *s2)
 {

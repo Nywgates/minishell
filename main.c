@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 11:56:53 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:26:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		check_error(char ***commande, char *line)
 {
 	int i;
 	int n;
-	
+
 	n = 0;
 	i = 0;
 	if (ft_strlen(line) == 1 && line[0] == 32)
@@ -72,12 +72,7 @@ int		check_error(char ***commande, char *line)
 			while (n > -1 && line[n] == ' ')
 				n--;
 			if (i == 0 || line[n] == ';')
-			{
-				write(1, "bash: syntax error near unexpected token ';'\n", 46);
-				g_stt = 258;
-				write(1, "minishell>", 11);
-				return (0);
-			}
+				return (check_error2(void));
 		}
 		i++;
 	}

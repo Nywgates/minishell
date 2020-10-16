@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_path.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 07:59:40 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 09:11:58 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:16:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,17 @@ char	*test_path(char **my_path, t_lst *lst)
 	return (tmp);
 }
 
+char	*env_bis(t_lst *lst)
+{
+	char *path;
+
+	path = test_path(NULL, lst);
+	if (!path)
+		return (NULL);
+	else
+		return (path);
+}
+
 char	*env_path(t_lst *lst)
 {
 	extern char **environ;
@@ -54,13 +65,7 @@ char	*env_path(t_lst *lst)
 	while (environ[i] && ft_strncmp(environ[i], "PATH", 4))
 		i++;
 	if (!environ[i])
-	{
-		path = test_path(NULL, lst);
-		if (!path)
-			return (NULL);
-		else
-			return (path);
-	}
+		return (env_bis(lst));
 	while (environ[i][j] && environ[i][j] != '=')
 		j++;
 	j++;

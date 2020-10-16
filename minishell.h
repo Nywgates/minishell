@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/12 16:13:47 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 09:27:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int				check_pipe(char **argument);
 char			*check_quote(t_lst *lst);
 void			ft_quote1(t_lst *lst, char *aux);
 void			*del_quote_lst(t_lst *lst);
-int				filter(char *commande, char ***env);
+void			filter(char *commande, char ***env);
 void			help_quote(t_lst *lst, char *mem, char **str);
 char			*boobool(char *line, char mem, int *titi);
 int				help_chev_r(int j, char **aux, t_var *fd, int n);
@@ -156,5 +156,7 @@ int				c(char c, char *tab);
 void			bs_dbquote2(int *i, char *mem, char *aux, int *n);
 int				chev_r_after_quote(char **argument, int i, t_var *fd, int n);
 int				rt_read(int ret, char **buf);
+int				check_chev(char **argument);
+int				check_error2(void);
 
 #endif
