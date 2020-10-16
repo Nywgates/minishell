@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:51:00 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 11:17:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 20:10:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ char	**last_wave(char **no_flag, char *flag)
 	return (no_flag);
 }
 
+void	replace_pipe(char **flag)
+{
+	int i;
+
+	i = 0;
+	while (*flag[i])
+	{
+		if (*flag[i] == 27)
+			*flag[i] = '|';
+		i++;
+	}
+}
+
 char	**capture_the_flag(t_lst *lst, char *my_path)
 {
 	t_lst	*tmp;
@@ -81,5 +94,6 @@ char	**capture_the_flag(t_lst *lst, char *my_path)
 		tmp_char = ft_strjoin_free(flag, "ę", 1);
 		flag = ft_strjoin_free(tmp_char, tmp->maillon, 1);
 	}
+	replace_pipe(&flag);
 	return (last_wave(no_flag, flag));
 }

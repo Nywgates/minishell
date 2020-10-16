@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:16:38 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/14 09:28:04 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 19:14:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	ft_new(char ***env, int ret)
 		{
 			while ((*env)[i])
 			{
-				free((*env)[i]);
+				if (i == ret)
+					free((*env)[i]);
 				(*env)[i] = (*env)[i + 1];
 				i++;
 			}

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 18:27:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 19:47:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	help_echo(char **argument, t_var fd, int no, int i)
 {
 	while (argument[++i] && argument[i][0] != '|')
 	{
-		if (argument[i][0] == 26)
+		if (argument[i][0] == 27)
 			argument[i][0] = '|';
 		if (fd.fd_out[fd.pos] == 1)
 			fdp_2(&fd, argument);

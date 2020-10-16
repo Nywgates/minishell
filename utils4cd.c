@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 17:42:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 19:31:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static void	error(char **argument, char *path, char *home)
 	else
 	{
 		ft_putstr_fd(": No such file or directory\n", 2);
-		close(fd);
+		if (fd >= 0)
+			close(fd);
 	}
 	if (argument[1][0] == '~')
 		free(path);
