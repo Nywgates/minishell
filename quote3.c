@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 15:26:17 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/12 16:12:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 18:34:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	bs_dbquote2(int *i, char *mem, char *aux, int *n)
 	*n = *i;
 	while (aux[*i] != *mem && aux[*i])
 	{
+		if (aux[*i] == '|')
+			aux[*i] = 26;
 		if (aux[*i] == '\\' && *mem != '\'')
 			*i += 2;
 		else
