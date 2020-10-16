@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 22:52:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 23:10:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,24 @@ char	**transform_lst(t_lst *lst)
 	return (new);
 }
 
+void	skip_26(char ***argument, int i, int n)
+{
+	char *tmp;
+
+	if ((*argument)[i][n] == 26 && (*argument)[i][n + 1] == '\0')
+		(*argument)[i][n] = '\0';
+	else
+	{
+		tmp = (*argument)[i];
+		(*argument)[i] = ft_strjoin_free(ft_substr(tmp, 0, n),\
+		ft_substr(tmp, n + 1, ft_strlen(tmp) - n), 3);
+		free(tmp);
+	}
+}
+
 void	help_echo(char **argument, t_var fd, int no, int i)
 {
-	int n;
-	char *tmp;
+	int		n;
 
 	while (argument[++i] && argument[i][0] != '|')
 	{
@@ -54,13 +68,7 @@ void	help_echo(char **argument, t_var fd, int no, int i)
 		while (argument[i][++n])
 		{
 			if (argument[i][n] == 26)
-			{
-				tmp = argument[i];
-				argument[i] = ft_strjoin_free(ft_substr(tmp, 0, n),\
-				ft_substr(tmp, ((size_t)(n + 1) >= ft_strlen(tmp) ? \
-				n : n + 1), ft_strlen(tmp) - n), 3);
-				free(tmp);
-			}
+				skip_26(&argument, i, n);
 		}
 		if (argument[i][0] == 11)
 			argument[i][0] = '|';
