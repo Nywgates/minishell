@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 14:27:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:58:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 static void	ft_free(char **content, char *name, char *tmp)
 {
 	if (content)
-	{
-		free(content[0]);
-		free(content[1]);
-		free(content);
-	}
+		free_dbl_ptr(content);
 	if (name)
 		free(name);
 	if (tmp)

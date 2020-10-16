@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 16:31:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:21:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		chev_left(char **argument, int i, t_var *fd)
 	{
 		if (argument[i + 1])
 		{
-			if ((fd->fd_in[fd->pos++] = open(argument[i + 1],
+			if ((fd->fd_in[fd->pos_in++] = open(argument[i + 1],
 			O_RDWR, 0660)) == -1)
 			{
 				ft_putstr_fd("minishell: ", 1);
@@ -83,9 +83,11 @@ void	fdp_2(t_var *fd, char **argument)
 	int		i;
 
 	i = -1;
+	fd->fd_out[0] = -2;
 	while (++i < count_pipe(argument))
 		fd->fd_out[i] = -2;
 	fd->pos = 0;
+	fd->pos_in = 0;
 	fd->error = 0;
 	fd->pid = 0;
 	if (!get_fd(argument, fd))
@@ -105,10 +107,12 @@ t_var	fdp(char **argument)
 
 	i = -1;
 	fd.fd_out = malloc(sizeof(int) * (count_pipe(argument) + 1));
+	fd.fd_out[0] = -2;
 	while (++i < count_pipe(argument))
 		fd.fd_out[i] = -2;
 	fd.fd_in = malloc(sizeof(int) * (nbr_left(argument) + 1));
 	fd.pos = 0;
+	fd.pos_in = 0;
 	fd.pid = 0;
 	fd.error = 0;
 	fd.argument = argument;

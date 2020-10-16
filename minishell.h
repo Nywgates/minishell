@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 16:28:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 17:20:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct	s_var
 	int		*fd_out;
 	int		*fd_in;
 	int		pos;
+	int		pos_in;
 	int		error;
 	char	**env;
 	pid_t	pid;

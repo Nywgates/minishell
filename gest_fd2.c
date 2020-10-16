@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gest_fd2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/14 10:57:49 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 16:57:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ char	**get_env(char *name, char **env)
 		if (!ft_strncmp(arg[0], name, ft_strlen(name))
 		&& ft_strlen(name) == ft_strlen(arg[0]))
 			return (arg);
-		free(arg[0]);
-		free(arg[1]);
-		free(arg);
+		free_dbl_ptr(arg);
 	}
 	return (NULL);
 }

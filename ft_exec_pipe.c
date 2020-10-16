@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 16:28:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 16:42:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ unexpected token `|'\n", 1));
 	return (0);
 }
 
+void	ft_exit3(int i, char **flags, char *my_path)
+{
+	free_dbl_ptr(flags);
+	free(my_path);
+	ft_exit2(i);
+}
+
 int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 {
 	char		*my_path;
@@ -75,7 +82,7 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 		flags = capture_the_flag(lst, my_path);
 		comp_pipe(lst, &var);
 		if (check_var_pid(lst, var, my_path, flags))
-			ft_exit2(1);
+			ft_exit3(1, flags, my_path);
 		else if (var.pid != 0)
 			ft_pidadd_back(&fiston, ft_pidnew(var.pid));
 		name = lst->maillon;
