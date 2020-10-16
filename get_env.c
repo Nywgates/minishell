@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/14 10:44:11 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:52:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,15 @@ void		dollar_var(char **arg, int i, int n, char **env)
 	char	*tmp;
 	char	*tmp2;
 	char	**content;
-	int		len;
 	char	*name;
 
-	(void)len;
 	name = get_name(&(arg[i])[n + 1]);
 	content = get_env(name, env);
 	if (content && arg[i][n + 1] != '"')
-	{
 		tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), content[1], 1);
-		len = ft_strlen(content[0]);
-	}
 	else
 		tmp = ft_strjoin_free(ft_substr(arg[i], 0, n), "\0", 1);
-	tmp2 = ft_strjoin_free(tmp, ft_substr(arg[i], n + ft_strlen(name) + 1,
-	ft_strlen(&arg[i][n + ft_strlen(name)])), 2);
+	tmp2 = ft_strjoin_free(tmp, ft_substr(arg[i], n + ft_strlen(name) + 1, ft_strlen(&arg[i][n + ft_strlen(name)])), 2);
 	ft_free(content, name, tmp);
 	free(arg[i]);
 	arg[i] = tmp2;

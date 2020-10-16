@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gest_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/08 15:35:53 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:23:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ t_var	fdp(char **argument)
 	int		i;
 
 	i = -1;
-	fd.fd_out = malloc(sizeof(int) * (count_pipe(argument)));
+	fd.fd_out = malloc(sizeof(int) * (count_pipe(argument) + 1));
 	while (++i < count_pipe(argument))
 		fd.fd_out[i] = -2;
-	fd.fd_in = malloc(sizeof(int) * (nbr_left(argument)));
+	fd.fd_in = malloc(sizeof(int) * (nbr_left(argument) + 1));
 	fd.pos = 0;
 	fd.error = 0;
 	fd.argument = argument;

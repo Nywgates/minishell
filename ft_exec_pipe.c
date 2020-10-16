@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 11:08:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/16 11:21:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 		if (err_pipe(lst, &my_path))
 			return (1);
 		flags = capture_the_flag(lst, my_path);
-		printf("|%s|\n", flags[0]);
 		comp_pipe(lst, &var);
 		if (check_var_pid(lst, var, my_path, flags))
 			exit(1);
