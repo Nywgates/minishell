@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 16:32:19 by laballea          #+#    #+#             */
-/*   Updated: 2020/09/08 08:24:23 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:54:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,12 @@ int			check_arg(char *argument)
 	int i;
 
 	i = 0;
-	if (!ft_isalpha(argument[0]))
+	if (!ft_isalpha(argument[0]) && argument[0] != '_')
 		return (0);
 	while (argument[i])
 	{
-		if (!ft_isalpha(argument[i]) && !ft_isdigit(argument[i]))
+		if (!ft_isalpha(argument[i]) && !ft_isdigit(argument[i])
+		&& argument[i] != '_')
 			return (0);
 		i++;
 	}
