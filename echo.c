@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 23:10:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/17 10:20:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	help_echo(char **argument, t_var fd, int no, int i)
 		}
 		if (argument[i][0] == 11)
 			argument[i][0] = '|';
-		if (fd.fd_out[fd.pos] == 1)
-			fdp_2(&fd, argument);
 		if (!fd.error)
 			ft_putstr_fd(argument[i], fd.fd_out[fd.pos]);
 		if (argument[i + 1] && argument[i + 1][0] != '|')

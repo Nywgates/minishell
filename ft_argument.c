@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 13:51:00 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 20:19:25 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/17 10:29:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,17 @@ char	**second_wave(t_lst *lst, char *flag, char **no_flag)
 
 char	**last_wave(char **no_flag, char *flag)
 {
+	int i;
+
+	i = 0;
 	free_dbl_ptr(no_flag);
 	no_flag = ft_set_split(flag, "ę<", "");
-	if (no_flag[1][0] == 26)
-		no_flag[1][0] = '\0';
+	while (no_flag[i])
+	{
+		if (no_flag[i] && no_flag[i][0] == 26)
+			no_flag[i][0] = '\0';
+		i++;
+	}
 	free(flag);
 	return (no_flag);
 }

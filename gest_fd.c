@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 17:21:35 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/17 10:20:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		chev_right(char **arg, int i, t_var *fd, int n)
 {
-	if (arg[i][0] == '>')
+	if (arg[i][0] == '>' && arg[i + 1])
 	{
 		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
@@ -76,28 +76,6 @@ int		nbr_left(char **argument)
 			result++;
 	}
 	return (result);
-}
-
-void	fdp_2(t_var *fd, char **argument)
-{
-	int		i;
-
-	i = -1;
-	fd->fd_out[0] = -2;
-	while (++i < count_pipe(argument))
-		fd->fd_out[i] = -2;
-	fd->pos = 0;
-	fd->pos_in = 0;
-	fd->error = 0;
-	fd->pid = 0;
-	if (!get_fd(argument, fd))
-		fd->error = 1;
-	i = -1;
-	while (++i < count_pipe(argument))
-	{
-		if (fd->fd_out[i] == -2)
-			fd->fd_out[i] = 1;
-	}
 }
 
 t_var	fdp(char **argument)

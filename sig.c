@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:57:54 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/14 11:50:48 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/17 11:01:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ void	signothing(int i)
 	if (!g_gpid)
 		return ;
 	else
+	{
 		write(1, "Quit (core dumped)\n", 19);
+		g_stt = 131;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 20:20:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/17 10:20:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ void			help_quote(t_lst *lst, char *mem, char **str);
 char			*boobool(char *line, char mem, int *titi);
 int				help_chev_r(int j, char **aux, t_var *fd, int n);
 void			ft_quote(t_lst *lst, char *aux, char mem, char *str);
-void			fdp_2(t_var *fd, char **argument);
 void			doodool(char **res, char **aux, char *mem, int *i);
 char			*doodool2(char **res, char **aux);
 void			dedel2(char **res, char **aux, int *i);
