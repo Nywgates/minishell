@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 09:39:01 by user42            #+#    #+#             */
-/*   Updated: 2020/10/20 10:12:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 13:34:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_blank(char *line)
+int		check_blank(char *line, int b)
 {
 	int i;
 
@@ -21,7 +21,8 @@ int		check_blank(char *line)
 		i++;
 	if ((size_t)i == ft_strlen(line))
 	{
-		write(1, "minishell>", 11);
+		if (b)
+			write(1, "minishell>", 11);
 		return (0);
 	}
 	return (1);
@@ -85,7 +86,7 @@ du symbole inattendu \"", 1);
 
 int		check_error_main(char *line)
 {
-	if (!check_blank(line) || !check_chev_main(line))
+	if (!check_blank(line, 1) || !check_chev_main(line))
 	{
 		free(line);
 		return (0);

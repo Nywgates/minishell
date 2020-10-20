@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 17:47:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 13:13:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ int		ft_exit(char **argument)
 	if (argument[1])
 		ft_exit2(ft_atoi(argument[1]));
 	else
-		ft_exit2(1);
+		ft_exit2(0);
 	return (1);
 }

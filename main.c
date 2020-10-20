@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/20 09:54:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 13:36:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,16 @@ void	get_environ(char ***env)
 
 void	cmd(char *commande, char ***env)
 {
-	if (commande)
-		filter(commande, env);
-	else
+	if (check_blank(commande, 0))
 	{
-		ft_putstr_fd("minishell: ", 1);
-		ft_putstr_fd("", 1);
-		ft_error(":command not found\n", 2);
+		if (commande)
+			filter(commande, env);
+		else
+		{
+			ft_putstr_fd("minishell: ", 1);
+			ft_putstr_fd("", 1);
+			ft_error(":command not found\n", 2);
+		}
 	}
 }
 
