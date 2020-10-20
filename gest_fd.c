@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/20 10:11:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 10:40:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 {
 	if (arg[i][0] == '>' && arg[i + 1])
 	{
-		if (check_new_line(arg, i))
+		if (check_new_line(arg, i) == -2)
 			return (-2);
 		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
@@ -50,8 +50,6 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 		else
 			return (-1);
 	}
-	else if (fd->fd_out[n] < 0)
-		i = chev_r_after_quote(arg, i, fd, n);
 	return (i);
 }
 
