@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/20 10:40:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 10:53:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		check_new_line(char **arg, int i)
 		if (!arg[i + 1])
 			return (ft_error("minishell: erreur de syntaxe près du symbole \
 inattendu « newline »\n", -2));
-		else if (arg[i + 1][0] == '>' && !arg[i + 2])
+		else if ((arg[i + 1][0] == '>' || arg[i + 1][0] == '<') && !arg[i + 2])
 			return (ft_error("minishell: erreur de syntaxe près du symbole \
 inattendu « newline »\n", -2));
 	}
