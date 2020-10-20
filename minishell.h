@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/17 10:20:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 09:45:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,5 @@ void			filter_bis(t_lst *lst, t_var fd, char **argument, char ***env);
 void			free_filter(char **argument, t_var fd, t_lst *lst);
 int				filter2(t_var fd, char **argument, t_lst *lst, char ***env);
 void			replace_pipe(char **flag);
-
+int				check_error_main(char *line);
 #endif

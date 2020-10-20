@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 09:39:01 by user42            #+#    #+#             */
-/*   Updated: 2020/10/16 09:44:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 09:51:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		check_blank(char *line)
 	if ((size_t)i == ft_strlen(line))
 	{
 		write(1, "minishell>", 11);
-		free(line);
 		return (0);
 	}
 	return (1);
@@ -44,11 +43,53 @@ int		skip_quote(char *line, int *i)
 	return (1);
 }
 
-int		error_token(char *line)
+int		skip(char *line, int *i)
 {
-	write(1, "bash: syntax error near unexpected token ';'\n", 46);
-	g_stt = 258;
-	write(1, "minishell>", 11);
-	free(line);
-	return (0);
+	if (line[(*i)] == '\\')
+	{
+		(*i)++;
+		if (line[(*i)])
+			(*i)++;
+	}
+	if (!skip_quote(line, i))
+		return (0);
+	return (1);
 }
+
+int		check_chev_main(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '>' || line[i] == '<')
+		{
+			if (line[i + 1] && line[i + 2] && line[i + 1] == ' ' &&
+			(line[i + 2] == '>' || line[i + 2] == '<' || line[i + 2] == '|'))
+			{
+				ft_putstr_fd("bash: erreur de syntaxe près \
+du symbole inattendu \"", 1);
+				write(1, &line[i + 2], 1);
+				ft_putstr_fd("\"\nminishell>", 1);
+				g_stt = 2;
+				return (0);
+			}
+		}
+		if (!skip(line, &i))
+			break ;
+		i++;
+	}
+	return (1);
+}
+
+int		check_error_main(char *line)
+{
+	if (!check_blank(line) || !check_chev_main(line))
+	{
+		free(line);
+		return (0);
+	}
+	return (1);
+}
+

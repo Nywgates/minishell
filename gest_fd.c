@@ -6,19 +6,36 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/17 10:20:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 10:07:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int		check_new_line(char **arg, int i)
+{
+	if (arg[i][0] == '>' && arg[i + 1])
+	{
+		if (!arg[i + 1])
+			return(ft_error("minishell: erreur de syntaxe près du symbole \
+inattendu « newline »\n", -2));
+		else if (arg[i + 1][0] == '>' && !arg[i + 2])
+			return(ft_error("minishell: erreur de syntaxe près du symbole \
+inattendu « newline »\n", -2));
+		return (1);
+	}
+	return (1);
+}
+
 int		chev_right(char **arg, int i, t_var *fd, int n)
 {
 	if (arg[i][0] == '>' && arg[i + 1])
 	{
+		if (check_new_line(arg, i))
+			return (-2);
 		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
-		if (arg[i + 1][0] == '>' && arg[i + 2][0] == '>')
+		if (arg[i + 2] && arg[i + 1][0] == '>' && arg[i + 2][0] == '>')
 			return (ft_error(
 				"minishell: syntax error near unexpected token `>>'\n", -2));
 		else if (arg[i + 1][0] == '>' && arg[i + 2])
