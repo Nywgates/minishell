@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/21 15:29:51 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 16:33:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	help_echo(char **argument, t_var fd, int no, int i)
 		{
 			if (argument[i][n] == 26)
 				skip_26(&argument, i, n);
+			if (argument[i][n] == 11)
+				argument[i][n] = '|';
 		}
-		if (argument[i][0] == 11)
-			argument[i][0] = '|';
 		if (!fd.error)
 			ft_putstr_fd(argument[i], fd.fd_out[fd.pos]);
 		if (argument[i + 1] && argument[i + 1][0] != '|')
@@ -85,16 +85,24 @@ int		print_echo(t_lst *lst, t_var fd)
 {
 	int		i;
 	int		no;
+	int		n;
 	char	**argument;
 
-	i = 1;
+	i = 0;
 	argument = transform_lst(lst);
 	no = 0;
-	while (argument[i] && !ft_strncmp(argument[i], "-n", 2)
-		&& ft_strlen(argument[i]) == 2)
+	while (argument[++i] && !ft_strncmp(argument[i], "-n", 2))
 	{
-		no = 1;
-		i++;
+		n = 0;
+		while (argument[i][++n])
+		{
+			if (argument[i][n] != 'n')
+				break ;
+		}
+		if (argument[i][n] != 'n' && argument[i][n])
+			break ;
+		else
+			no = 1;
 	}
 	help_echo(argument, fd, no, --i);
 	free_dbl_ptr(argument);
