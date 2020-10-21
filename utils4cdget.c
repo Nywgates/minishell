@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4cdget.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laballea <laballea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:07:06 by laballea          #+#    #+#             */
-/*   Updated: 2020/02/12 11:03:34 by laballea         ###   ########.fr       */
+/*   Updated: 2020/10/21 15:59:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,23 @@ char	*get_path(char *home, char *argument)
 		free(current);
 		return (tmp);
 	}
+}
+
+int		need_line_chev(char **arg, int i)
+{
+	if (check_new_line(arg, i) == -2)
+		return (-2);
+	if (filter_comp("''", 2, arg[i + 1]))
+	{
+		g_stt = 1;
+		return (ft_error("minishell: : No such file or directory\n", -2));
+	}
+	return (0);
+}
+
+int		inception_return(void)
+{
+	g_stt = 2;
+	return (ft_error("minishell: erreur de syntaxe près du symbole \
+inattendu « newline »\n", -2));
 }

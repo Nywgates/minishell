@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 11:32:20 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/17 10:20:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:29:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,16 @@ int		print_echo(t_lst *lst, t_var fd)
 	int		no;
 	char	**argument;
 
-	i = 0;
+	i = 1;
 	argument = transform_lst(lst);
 	no = 0;
-	if (argument[1] && !ft_strncmp(argument[1], "-n", 2)
-		&& ft_strlen(argument[1]) == 2)
+	while (argument[i] && !ft_strncmp(argument[i], "-n", 2)
+		&& ft_strlen(argument[i]) == 2)
 	{
 		no = 1;
 		i++;
 	}
-	help_echo(argument, fd, no, i);
+	help_echo(argument, fd, no, --i);
 	free_dbl_ptr(argument);
 	g_stt = 0;
 	return (0);

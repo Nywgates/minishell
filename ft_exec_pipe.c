@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/17 09:45:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:58:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 		flags = capture_the_flag(lst, my_path);
 		comp_pipe(lst, &var);
 		if (check_var_pid(lst, var, my_path, flags))
-			ft_exit3(1, flags, my_path);
+			ft_exit3(1, flags, my_path, 1);
 		else if (var.pid != 0)
 			ft_pidadd_back(&fiston, ft_pidnew(var.pid));
 		name = lst->maillon;

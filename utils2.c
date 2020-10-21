@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:58:18 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/20 13:13:33 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:09:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,31 +68,9 @@ void	free_dbl_ptr(char **ptr)
 	free(ptr);
 }
 
-int		ft_exit(char **argument)
+void	filter_bis(t_lst *lst, t_var fd, char **argument, char ***env)
 {
-	int i;
-
-	i = -1;
-	ft_putstr_fd("exit\n", 1);
-	while (argument[1] && argument[1][++i])
-	{
-		if (!ft_isdigit(argument[1][i]))
-		{
-			ft_putstr_fd("bash: exit: ", 2);
-			ft_putstr_fd(argument[1], 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
-			ft_exit2(2);
-		}
-	}
-	if (argument[1] && argument[2])
-	{
-		ft_putstr_fd("bash: exit: too many argument\n", 2);
-		g_stt = 1;
-		return (0);
-	}
-	if (argument[1])
-		ft_exit2(ft_atoi(argument[1]));
-	else
-		ft_exit2(0);
-	return (1);
+	g_lst = lst;
+	filter2(fd, argument, lst, env);
+	free_filter(argument, fd, lst);
 }

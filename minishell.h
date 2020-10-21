@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/20 13:35:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 16:01:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void			need_line(char *keep, char **s, char ***k);
 void			*freebuffs(char **buff);
 void			*ft_calloc_bis(size_t count, size_t size);
 char			*get_current(char *home);
-int				ft_exit(char **argument);
+int				ft_exit(t_lst *lst, char *my_path, char **flags);
 char			**tronk(char **arg, int start, int end);
 int				ft_check_in(char *str, char c);
 int				ft_error(char *str, int ret);
@@ -144,7 +144,7 @@ void			init_var_exec(t_var *var, char ***env);
 int				check_built_in(char *str);
 void			ft_wait_pid(t_fils *fiston, char *name);
 int				comp_len(char *str, size_t l, t_lst *lst);
-int				built_in(t_lst *lst, t_var var);
+int				built_in(t_lst *lst, t_var var, char *my_path, char **flags);
 void			exec_fils(t_lst *lst, char *my_path, char **flags, t_var var);
 int				check_pipe(char **argument);
 char			*check_quote(t_lst *lst);
@@ -171,11 +171,16 @@ void			ft_env_bis(char **arg, int i, int n, char **env);
 void			ft_env2(char **arg, int i, int n, char **env);
 int				free_env(char **env, char *line);
 void			ft_exit2(int i);
-void			ft_exit3(int i, char **flags, char *my_path);
+void			ft_exit3(int i, char **flags, char *my_path, int bl);
 int				g_save_ret(char *save);
 void			filter_bis(t_lst *lst, t_var fd, char **argument, char ***env);
 void			free_filter(char **argument, t_var fd, t_lst *lst);
 int				filter2(t_var fd, char **argument, t_lst *lst, char ***env);
 void			replace_pipe(char **flag);
 int				check_error_main(char *line);
+int				filter_comp(char *str, size_t len, char *argument);
+void			ft_error_unset(char **argument, int i);
+int				inception_return(void);
+int				need_line_chev(char **arg, int i);
+int				check_new_line(char **arg, int i);
 #endif

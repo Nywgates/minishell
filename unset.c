@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:16:38 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 19:14:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 16:05:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,15 @@ int		print_unset(char **argument, char ***env)
 	i = 0;
 	while (++i < get_size(argument))
 	{
-		if ((ret = in_env(*env, argument[i])) != -1)
+		if (!check_arg(argument[i]))
+		{
+			ft_putstr_fd("minishell: unset: `", 2);
+			ft_putstr_fd(argument[i], 2);
+	 		ft_putstr_fd("': not a valid identifier\n", 2);
+			g_stt = 1;
+		}
+		else if ((ret = in_env(*env, argument[i])) != -1)
 			ft_new(env, ret);
 	}
-	return (1);
+	return (0);
 }

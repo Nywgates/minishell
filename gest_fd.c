@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/20 11:08:33 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:59:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		check_new_line(char **arg, int i)
 {
 	if (arg[i][0] == '>' && arg[i + 1])
 	{
+		g_stt = 2;
 		if (!arg[i + 1])
 			return (ft_error("minishell: erreur de syntaxe près du symbole \
 inattendu « newline »\n", -2));
@@ -30,7 +31,7 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 {
 	if (arg[i][0] == '>' && arg[i + 1])
 	{
-		if (check_new_line(arg, i) == -2)
+		if (need_line_chev(arg, i) == -2)
 			return (-2);
 		if (fd->fd_out[n] >= 0)
 			close(fd->fd_out[n]);
@@ -50,6 +51,8 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 		else
 			return (-1);
 	}
+	else if (arg[i][0] == '>' && !arg[i + 1])
+		return (inception_return());
 	return (i);
 }
 

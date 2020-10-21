@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:21:26 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/08 15:35:15 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/21 15:38:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int			valid_ass(char *argument)
+{
+	int i;
+
+	i = 0;
+	while (argument[i])
+	{
+		if (argument[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 void		help_export(char *arg, char **argument, int i, char ***env)
 {
@@ -19,8 +33,11 @@ void		help_export(char *arg, char **argument, int i, char ***env)
 	n = 0;
 	if ((n = find_arg(arg, *env)))
 	{
-		free((*env)[n]);
-		(*env)[n] = ft_substr(argument[i], 0, ft_strlen(argument[i]));
+		if (valid_ass(argument[i]))
+		{
+			free((*env)[n]);
+			(*env)[n] = ft_substr(argument[i], 0, ft_strlen(argument[i]));
+		}
 	}
 	else
 	{

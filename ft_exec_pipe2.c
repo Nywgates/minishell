@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:21:43 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/16 22:20:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/21 15:58:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		comp_len(char *str, size_t l, t_lst *lst)
 		&& ft_strlen(lst->maillon) == l);
 }
 
-int		built_in(t_lst *lst, t_var var)
+int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 {
 	if (!ft_strncmp(lst->maillon, "echo", 4) && ft_strlen(lst->maillon) == 4)
 	{
@@ -74,7 +74,7 @@ int		built_in(t_lst *lst, t_var var)
 	else if (comp_len("export", 6, lst))
 		return (print_export(var.argument, var.fd_out[var.pos], &var.env));
 	else if (comp_len("exit", 4, lst))
-		return (ft_exit(var.argument));
+		return (ft_exit(lst, my_path, flags));
 	else if (comp_len("cd", 2, lst))
 		return (print_cd(var.argument));
 	else
@@ -100,11 +100,12 @@ void	exec_fils(t_lst *lst, char *my_path, char **flags, t_var var)
 		if (var.fd_out[var.pos] != 1)
 			dup2(var.fd_out[var.pos], 1);
 	}
-	if (built_in(lst, var))
+	if (built_in(lst, var, my_path, flags))
 		return ;
 	else if (my_path && execve(my_path, flags, var.env) == -1)
 	{
 		perror("execve\n");
+		ft_exit3(0, flags, my_path, 0);
 		exit(1);
 	}
 }
