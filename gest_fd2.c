@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 16:46:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:53:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int		check_dol(char **argument, int i)
 			n = 0;
 			nsm = ft_set_split(g_nsm, " <>|", "<>|");
 			ft_putstr_fd("bash: ", 2);
-			ft_putstr_fd(nsm[i + 1], 2);
-			free_dbl_ptr(nsm);
 			if (ft_strlen(arg) == 0)
+			{
+				ft_putstr_fd(nsm[i + 1], 2);
+				free_dbl_ptr(nsm);
 				ft_putstr_fd(" :redirection ambiguë\n", 2);
+			}
 			else
 				ft_putstr_fd(" : Aucun fichier ou dossier de ce type\n", 2);
 			return (0);
