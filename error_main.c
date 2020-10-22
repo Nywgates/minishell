@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 09:39:01 by user42            #+#    #+#             */
-/*   Updated: 2020/10/20 13:34:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 09:23:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ du symbole inattendu \"", 1);
 
 int		check_error_main(char *line)
 {
-	if (!check_blank(line, 1) || !check_chev_main(line))
+	if (!check_blank(line, 1) || !check_chev_main(line)
+	|| !check_pipe_main(line))
 	{
 		free(line);
 		return (0);

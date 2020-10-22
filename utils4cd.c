@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/20 13:19:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 11:46:33 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ char		*get_home(void)
 	return (ft_strjoin("", home));
 }
 
-static void	error(char **argument, char *path, char *home)
+static void	error(char *argument, char *path, char *home)
 {
 	int fd;
 
 	ft_putstr_fd("minishell: cd: ", 2);
-	if (argument[1][0] == '~' && argument[1][1] == '/')
+	if (argument[0] == '~' && argument[1] == '/')
 		ft_putstr_fd(path, 2);
 	else
-		ft_putstr_fd(argument[1], 2);
-	if ((fd = open(argument[1], O_RDWR, 0660)) != -1)
+		ft_putstr_fd(argument, 2);
+	if ((fd = open(argument, O_RDWR, 0660)) != -1)
 		ft_putstr_fd(": Not a directory\n", 2);
 	else
 	{
@@ -49,31 +49,33 @@ static void	error(char **argument, char *path, char *home)
 		if (fd >= 0)
 			close(fd);
 	}
-	if (argument[1][0] == '~')
+	if (argument[0] == '~')
 		free(path);
 	free(home);
 }
 
-int			print_cd(char **argument)
+int			print_cd(t_lst *lst)
 {
 	char *home;
 	char *path;
+	char *arg;
 
+	arg = lst->next->maillon;
 	home = get_home();
-	if (!argument[1])
+	if (!arg)
 		chdir(home);
 	else
 	{
-		path = argument[1];
-		if (argument[1][0] == '~')
-			path = ft_strjoin(home, &argument[1][1]);
+		path = arg;
+		if (arg[0] == '~')
+			path = ft_strjoin(home, &arg[1]);
 		if (chdir(path) == -1)
 		{
-			error(argument, path, home);
+			error(arg, path, home);
 			g_stt = 1;
 			return (1);
 		}
-		if (argument[1][0] == '~')
+		if (arg[0] == '~')
 			free(path);
 	}
 	free(home);

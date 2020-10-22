@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/21 15:57:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 12:14:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int		ft_exit(t_lst *lst, char *my_path, char **flags)
 	tmp_str = (char *)lst->next->maillon;
 	while (tmp_str[++i])
 	{
+		if ((tmp_str[i] == '-' || tmp_str[i] == '+') && i == 0)
+			i++;
 		if (!ft_exit_need_line(tmp_str, i, lst))
 			return (1);
 	}

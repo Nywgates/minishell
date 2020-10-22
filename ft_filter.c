@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/21 14:42:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 12:01:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	filter_if(t_var fd, char **argument, t_lst *lst, char ***env)
 {
 	(void)lst;
 	if (filter_comp("unset", 5, argument[0]))
-		g_stt = print_unset(argument, env);
+		g_stt = print_unset(lst, env);
 	else if (filter_comp("export", 6, argument[0]) && !check_pipe(argument))
-		print_export(argument, fd.fd_out[fd.pos], env);
+		print_export(lst, fd.fd_out[fd.pos], env);
 	else if (filter_comp("cd", 2, argument[0]) && !check_pipe(argument))
-		print_cd(argument);
+		print_cd(lst);
 	else if (filter_comp("env", 3, argument[0]) && !check_pipe(argument))
 		print_env(fd.fd_out[fd.pos], env);
 	else
@@ -45,8 +45,10 @@ int		filter2(t_var fd, char **argument, t_lst *lst, char ***env)
 		return (0);
 	if (check_quote(lst))
 	{
-		ft_quote1(lst, check_quote(lst));
-		return (filter2(fd, argument, lst, env));
+		//ft_quote1(lst, check_quote(lst));
+		//return (filter2(fd, argument, lst, env));
+		ft_putstr_fd("multiple line call. It's a bonus.\n", 1);
+		return (0);
 	}
 	del_quote_lst(lst);
 	if (check_pipe(argument))

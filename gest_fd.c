@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/21 15:59:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 11:41:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,13 @@ int		chev_right(char **arg, int i, t_var *fd, int n)
 				"minishell: syntax error near unexpected token `>>'\n", -2));
 		else if (arg[i + 1][0] == '>' && arg[i + 2])
 		{
-			fd->fd_out[n] = open(arg[i + 2], O_RDWR | O_APPEND | O_CREAT, 0660);
+			fd->fd_out[n] = open(del_quote(arg[i + 2]), O_RDWR |
+			O_APPEND | O_CREAT, 0660);
 			i += 2;
 		}
 		else if (arg[i + 1] && arg[i + 1][0] != '>')
-		{
-			fd->fd_out[n] = open(arg[i++ + 1], O_RDWR | O_CREAT
+			fd->fd_out[n] = open(del_quote(arg[i++ + 1]), O_RDWR | O_CREAT
 			| O_TRUNC, 0660);
-		}
 		else
 			return (-1);
 	}

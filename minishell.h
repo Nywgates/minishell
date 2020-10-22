@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/21 16:01:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 12:03:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			*g_save;
 
 char			*get_path(char *home, char *argument);
 char			*get_current(char *home);
-int				print_cd(char **argument);
+int				print_cd(t_lst *lst);
 void			sigint(int i);
 void			signothing(int i);
 int				print_echo(t_lst *lst, t_var fd);
@@ -83,8 +83,8 @@ int				chev_right(char **arg, int i, t_var *fd, int n);
 char			**get_env(char *name, char **env);
 void			ft_env(char **arg, char **env);
 int				print_env(int fd, char ***environ);
-int				print_unset(char **argument, char ***env);
-int				print_export(char **argument, int fd, char ***env);
+int				print_unset(t_lst *lst, char ***env);
+int				print_export(t_lst *lst, int fd, char ***env);
 char			*get_name(char *str);
 void			dollar_inte(char **arg, int i, int n);
 void			dollar_dieze(char **arg, int i, int n);
@@ -132,9 +132,6 @@ int				ft_atoi(const char *str);
 char			**mem_no_flag(void);
 char			**ft_split_mini(char const *s, char c);
 int				count_size_mini(char const *s, char c);
-void			help_export(char *arg, char **argument, int i, char ***env);
-void			ft_error_export(char **argument, int i);
-int				print_export(char **argument, int fd, char ***env);
 int				find_arg(char *arg, char **environ);
 char			*get_arg(char *argument);
 int				ft_alphabet(char **env, int len, int fd);
@@ -179,8 +176,10 @@ int				filter2(t_var fd, char **argument, t_lst *lst, char ***env);
 void			replace_pipe(char **flag);
 int				check_error_main(char *line);
 int				filter_comp(char *str, size_t len, char *argument);
-void			ft_error_unset(char **argument, int i);
 int				inception_return(void);
 int				need_line_chev(char **arg, int i);
 int				check_new_line(char **arg, int i);
+int				check_pipe_main(char *line);
+int				skip(char *line, int *i);
+char			*del_quote(char *str);
 #endif
