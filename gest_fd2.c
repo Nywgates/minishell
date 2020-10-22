@@ -6,17 +6,16 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 16:53:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:56:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_dol(char **argument, int i)
+int		check_dol(char **argument, int i, int n)
 {
 	char	*arg;
 	char	**nsm;
-	int		n;
 
 	if ((argument[i][0] == '>' || argument[i][0] == '<') && argument[i + 1])
 	{
@@ -26,7 +25,6 @@ int		check_dol(char **argument, int i)
 			n++;
 		if (ft_strlen(arg) == 0 || n == (int)ft_strlen(arg))
 		{
-			n = 0;
 			nsm = ft_set_split(g_nsm, " <>|", "<>|");
 			ft_putstr_fd("bash: ", 2);
 			if (ft_strlen(arg) == 0)
@@ -52,7 +50,7 @@ int		get_fd(char **argument, t_var *fd)
 	n = 0;
 	while (argument[++i])
 	{
-		if (!check_dol(argument, i))
+		if (!check_dol(argument, i, 0))
 			return (0);
 		if (argument[i][0] == '|')
 			n++;
