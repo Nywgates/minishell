@@ -6,7 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/22 12:03:11 by user42           ###   ########.fr       */
+=======
+/*   Updated: 2020/10/22 11:47:44 by user42           ###   ########.fr       */
+>>>>>>> d8abbd218248c95a6bafc2e751d27a3a133b1c48
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +136,11 @@ int				ft_atoi(const char *str);
 char			**mem_no_flag(void);
 char			**ft_split_mini(char const *s, char c);
 int				count_size_mini(char const *s, char c);
+<<<<<<< HEAD
+=======
+void			help_export(char *arg, char *str, char ***env);
+void			ft_error_export(char *str);
+>>>>>>> d8abbd218248c95a6bafc2e751d27a3a133b1c48
 int				find_arg(char *arg, char **environ);
 char			*get_arg(char *argument);
 int				ft_alphabet(char **env, int len, int fd);

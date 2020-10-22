@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/08 08:21:26 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 12:06:30 by user42           ###   ########.fr       */
+/*   Created: 2020/10/22 12:25:00 by user42            #+#    #+#             */
+/*   Updated: 2020/10/22 12:25:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,15 @@ void		help_export(char *arg, char *str, char ***env)
 
 void		ft_error_export(char *str)
 {
+<<<<<<< HEAD
 	ft_putstr_fd("minishell: export: « ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(" » : not a valid identifier\n", 2);
+=======
+	ft_putstr_fd("minishell: export: «", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("» : not a valid identifier\n", 2);
+>>>>>>> d8abbd218248c95a6bafc2e751d27a3a133b1c48
 	g_stt = 1;
 }
 
