@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 11:38:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:43:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,27 @@
 
 int		check_dol(char **argument, int i)
 {
-	if (argument[i][0] == '>' || argument[i][0] == '<')
+	char	*arg;
+	char	**nsm;
+	int		n;
+
+	if ((argument[i][0] == '>' || argument[i][0] == '<') && argument[i + 1])
 	{
-		if (argument[i + 1] && ft_strlen(argument[i + 1]) == 0)
+		n = 0;
+		arg = del_quote(argument[i + 1]);
+		while (arg[n] == '\b')
+			n++;
+		if (ft_strlen(arg) == 0 || n == ft_strlen(arg))
 		{
+			n = 0;
+			nsm = ft_set_split(g_nsm, " <>|", "<>|");
 			ft_putstr_fd("bash: ", 2);
-			ft_putstr_fd(argument[i + 1], 2);
-			ft_putstr_fd(" : redirection ambiguë\n", 2);
+			ft_putstr_fd(nsm[i + 1], 2);
+			free_dbl_ptr(nsm);
+			if (ft_strlen(arg) == 0)
+				ft_putstr_fd(" :redirection ambiguë\n", 2);
+			else
+				ft_putstr_fd(" : Aucun fichier ou dossier de ce type\n", 2);
 			return (0);
 		}
 	}
@@ -52,32 +66,33 @@ int		get_fd(char **argument, t_var *fd)
 	return (1);
 }
 
-int		count_pipe(char **argument)
+void	init_arg(char ***arg, char **env, int i, int n)
 {
-	int i;
-	int n;
-
-	i = 0;
-	n = 0;
-	while (argument[i])
-	{
-		if (argument[i][0] == '|')
-			n++;
-		i++;
-	}
-	n++;
-	return (n);
+	(*arg) = malloc(sizeof(char *) * 3);
+	(*arg)[0] = ft_substr(env[i], 0, n);
+	(*arg)[1] = ft_substr(env[i], n + 1, ft_strlen(env[i]) - (n + 1));
+	(*arg)[2] = NULL;
 }
 
 char	**get_env(char *name, char **env)
 {
 	int			i;
+	int			n;
 	char		**arg;
 
 	i = -1;
 	while (env[++i])
 	{
-		arg = ft_split(env[i], '=');
+		n = -1;
+		while (env[i][++n])
+		{
+			if (env[i][n] == '=')
+				break ;
+		}
+		if (env[i][n] == '=')
+			init_arg(&arg, env, i, n);
+		else
+			arg = ft_split(env[i], '=');
 		if (!ft_strncmp(arg[0], name, ft_strlen(name))
 		&& ft_strlen(name) == ft_strlen(arg[0]))
 			return (arg);

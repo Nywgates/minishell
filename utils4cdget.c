@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:07:06 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/21 15:59:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:43:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,21 @@ int		inception_return(void)
 	g_stt = 2;
 	return (ft_error("minishell: erreur de syntaxe près du symbole \
 inattendu « newline »\n", -2));
+}
+
+int		count_pipe(char **argument)
+{
+	int i;
+	int n;
+
+	i = 0;
+	n = 0;
+	while (argument[i])
+	{
+		if (argument[i][0] == '|')
+			n++;
+		i++;
+	}
+	n++;
+	return (n);
 }

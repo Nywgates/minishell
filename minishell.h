@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 14:54:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:35:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char			**g_arg;
 t_var			g_fd;
 t_lst			*g_lst;
 char			*g_save;
+char			*g_nsm;
 
 char			*get_path(char *home, char *argument);
 char			*get_current(char *home);

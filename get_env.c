@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/16 16:58:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:13:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static void	ft_free(char **content, char *name, char *tmp)
 		free_dbl_ptr(content);
 	if (name)
 		free(name);
-	if (tmp)
-		free(tmp);
+	free(tmp);
 }
 
 void		dollar_var(char **arg, int i, int n, char **env)

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:28 by user42            #+#    #+#             */
-/*   Updated: 2020/10/22 14:53:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:38:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ int		filter2(t_var fd, char **argument, t_lst *lst, char ***env)
 		return (0);
 	if (check_quote(lst))
 	{
-		//ft_quote1(lst, check_quote(lst));
-		//return (filter2(fd, argument, lst, env));
-		ft_putstr_fd("multiple line call. It's a bonus.\n", 1);
+		ft_putstr_fd("multiple line call. It's a bonus.\n", 2);
 		return (0);
 	}
 	del_quote_lst(lst);
@@ -84,8 +82,6 @@ void	filter(char *commande, char ***env)
 	lst = NULL;
 	ft_env(argument, *env);
 	fd = fdp(argument);
-	if (fd.error == 1)
-		return ;
 	while (argument[++i])
 	{
 		if (ft_strncmp(argument[i], ">", 1))

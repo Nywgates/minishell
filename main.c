@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 10:20:14 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 09:24:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:34:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	cmd(char *commande, char ***env)
 {
 	if (check_blank(commande, 0))
 	{
+		g_nsm = commande;
 		if (commande)
 			filter(commande, env);
 		else
