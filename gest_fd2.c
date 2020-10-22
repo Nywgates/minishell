@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 16:43:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 16:46:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		check_dol(char **argument, int i)
 		arg = del_quote(argument[i + 1]);
 		while (arg[n] == '\b')
 			n++;
-		if (ft_strlen(arg) == 0 || n == ft_strlen(arg))
+		if (ft_strlen(arg) == 0 || n == (int)ft_strlen(arg))
 		{
 			n = 0;
 			nsm = ft_set_split(g_nsm, " <>|", "<>|");
