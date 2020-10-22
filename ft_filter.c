@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:57:19 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/21 14:42:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 09:41:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	filter_if(t_var fd, char **argument, t_lst *lst, char ***env)
 {
 	(void)lst;
 	if (filter_comp("unset", 5, argument[0]))
-		g_stt = print_unset(argument, env);
+		g_stt = print_unset(lst, env);
 	else if (filter_comp("export", 6, argument[0]) && !check_pipe(argument))
-		print_export(argument, fd.fd_out[fd.pos], env);
+		print_export(lst, fd.fd_out[fd.pos], env);
 	else if (filter_comp("cd", 2, argument[0]) && !check_pipe(argument))
 		print_cd(argument);
 	else if (filter_comp("env", 3, argument[0]) && !check_pipe(argument))

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:16:38 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/21 16:24:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 09:40:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,23 @@ void	ft_new(char ***env, int ret)
 	}
 }
 
-int		print_unset(char **argument, char ***env)
+int		print_unset(t_lst *lst, char ***env)
 {
-	int			i;
-	int			ret;
+	int		ret;
+	t_lst	*tmp;
 
-	i = 0;
-	while (++i < get_size(argument))
+	tmp = lst;
+	while (tmp->next)
 	{
-		if (!check_arg(argument[i]))
+		tmp = tmp->next;
+		if (!check_arg(tmp->maillon))
 		{
-			ft_putstr_fd("minishell: unset: `", 2);
-			ft_putstr_fd(argument[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			ft_putstr_fd("minishell: unset: « ", 2);
+			ft_putstr_fd(tmp->maillon, 2);
+			ft_putstr_fd(" » : not a valid identifier\n", 2);
 			g_stt = 1;
 		}
-		else if ((ret = in_env(*env, argument[i])) != -1)
+		else if ((ret = in_env(*env, tmp->maillon)) != -1)
 			ft_new(env, ret);
 	}
 	return (0);

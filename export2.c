@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 08:21:26 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/21 15:38:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/22 11:57:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int			valid_ass(char *argument)
 	return (0);
 }
 
-void		help_export(char *arg, char **argument, int i, char ***env)
+void		help_export(char *arg, char *str, char ***env)
 {
 	int	n;
 
 	n = 0;
 	if ((n = find_arg(arg, *env)))
 	{
-		if (valid_ass(argument[i]))
+		if (valid_ass(str))
 		{
 			free((*env)[n]);
-			(*env)[n] = ft_substr(argument[i], 0, ft_strlen(argument[i]));
+			(*env)[n] = ft_substr(str, 0, ft_strlen(str));
 		}
 	}
 	else
@@ -44,43 +44,39 @@ void		help_export(char *arg, char **argument, int i, char ***env)
 		n = 0;
 		while (n < get_size(*env))
 			n++;
-		(*env)[n] = ft_substr(argument[i], 0, ft_strlen(argument[i]));
+		(*env)[n] = ft_substr(str, 0, ft_strlen(str));
 		(*env)[n + 1] = NULL;
 	}
 }
 
-void		ft_error_export(char **argument, int i)
+void		ft_error_export(char *str)
 {
-	ft_putstr_fd("minishell: export: `", 2);
-	ft_putstr_fd(argument[i], 2);
-	ft_putstr_fd("': not a valid identifier\n", 2);
+	ft_putstr_fd("minishell: export: «", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("» : not a valid identifier\n", 2);
 	g_stt = 1;
 }
 
-int			print_export(char **argument, int fd, char ***env)
+int			print_export(t_lst *lst, int fd, char ***env)
 {
-	int		i;
 	char	*arg;
+	t_lst	*tmp;
+	char	*aux;
 
-	i = 0;
+	tmp = lst;
 	g_stt = 0;
-	while (argument[i])
-	{
-		if (!ft_strncmp(argument[i], "export", 6)
-			&& ft_strlen(argument[i]) == 6)
-			break ;
-		i++;
-	}
-	if (argument[i] && (!argument[i + 1]
-		|| argument[i + 1][0] == '\0' || argument[i + 1][0] == '|'))
+	aux = (char *)tmp->next;
+	if (tmp->maillon && (!aux || aux[0] == '\0' || aux[0] == '|'))
 		return (ft_alphabet(*env, get_size(*env), fd));
-	while (argument[++i] && argument[i][0] != '|')
+	while (tmp->next && aux[0] != '|')
 	{
-		arg = get_arg(argument[i]);
+		tmp = tmp->next;
+		aux = (char *)tmp->next;
+		arg = get_arg(tmp->maillon);
 		if (!check_arg(arg))
-			ft_error_export(argument, i);
+			ft_error_export(tmp->maillon);
 		else
-			help_export(arg, argument, i, env);
+			help_export(arg, tmp->maillon, env);
 		free(arg);
 	}
 	return (1);
