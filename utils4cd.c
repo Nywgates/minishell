@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/23 09:32:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 12:16:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int			print_cd(t_lst *lst)
 	char *path;
 	char *arg;
 
-	arg = lst->next->maillon;
+	if (lst->next)
+		arg = lst->next->maillon;
+	else
+		arg = NULL;
 	home = get_home();
 	if (!arg)
 		chdir(home);

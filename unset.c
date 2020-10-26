@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 13:16:38 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/22 14:52:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 09:03:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		print_unset(t_lst *lst, char ***env)
 	t_lst	*tmp;
 
 	tmp = lst;
+	g_stt = 0;
 	while (tmp->next)
 	{
 		tmp = tmp->next;

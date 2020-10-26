@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/22 16:13:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 10:25:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		ft_env(char **arg, char **env)
 				if (!arg[i][n])
 					break ;
 			}
-			ft_env_bis(arg, i, n, env);
+			ft_env_bis(arg, i, &n, env);
 		}
 	}
 }

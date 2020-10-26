@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/26 08:37:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 09:13:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_exit3(int i, char **flags, char *my_path, int bl)
 
 int		ft_exit_need_line(char *tmp_str, int i, t_lst *lst)
 {
-	if (!ft_isdigit(tmp_str[i]))
+	if (!ft_isdigit(tmp_str[i]) && tmp_str[0] != '|')
 	{
 		ft_putstr_fd("bash: exit: ", 2);
 		ft_putstr_fd(tmp_str, 2);
@@ -68,9 +68,9 @@ int		ft_exit(t_lst *lst, char *my_path, char **flags)
 	char	*tmp_str;
 
 	need_some_line(&i, &tmp_str);
-	if (lst->next)
+	if (lst->next && ft_strncmp((char *)lst->next->maillon, "|", 1))
 		tmp_str = (char *)lst->next->maillon;
-	while (lst->next && tmp_str[++i])
+	while (tmp_str && lst->next && tmp_str[++i])
 	{
 		if ((tmp_str[i] == '-' || tmp_str[i] == '+') && i == 0)
 			i++;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 09:39:01 by user42            #+#    #+#             */
-/*   Updated: 2020/10/22 09:23:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 10:16:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		skip(char *line, int *i)
 	if (line[(*i)] == '\\')
 	{
 		(*i)++;
-		if (line[(*i)])
+		if (line[(*i)] && line[(*i) + 1])
 			(*i)++;
 	}
 	if (!skip_quote(line, i))
@@ -64,10 +64,10 @@ int		check_chev_main(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '>' || line[i] == '<')
+		if ((line[i] == '>' || line[i] == '<') && line[i + 1] && line[i + 2])
 		{
-			if (line[i + 1] && line[i + 2] && line[i + 1] == ' ' &&
-			(line[i + 2] == '>' || line[i + 2] == '<' || line[i + 2] == '|'))
+			if (line[i + 1] == ' ' && (line[i + 2] == '>'
+			|| line[i + 2] == '<' || line[i + 2] == '|'))
 			{
 				ft_putstr_fd("bash: erreur de syntaxe près \
 du symbole inattendu \"", 1);

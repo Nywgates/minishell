@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 15:14:15 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/22 15:35:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 10:28:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		chev_left(char **argument, int i, t_var *fd)
 				ft_putstr_fd("minishell: ", 1);
 				ft_putstr_fd(argument[i + 1], 1);
 				ft_putstr_fd(": No such file or directory\n", 1);
+				g_stt = 1;
 				fd->error = 1;
 				return (-1);
 			}
