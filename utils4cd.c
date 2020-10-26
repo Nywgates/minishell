@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/26 12:16:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 14:22:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,46 @@ static void	error(char *argument, char *path, char *home)
 	free(home);
 }
 
+int			need_line_print_cd(char *arg, char *home)
+{
+	void	*o;
+	char	*path;
+
+	path = arg;
+	if (arg && arg[0] == '~')
+		path = ft_strjoin(home, &arg[1]);
+	if (path && (o = opendir(path)) == NULL)
+	{
+		closedir(o);
+		error(arg, path, home);
+		g_stt = 1;
+		return (0);
+	}
+	else if (path && g_lst->pipe <= 0)
+		chdir(path);
+	if (path)
+		closedir(o);
+	if (arg && arg[0] == '~')
+		free(path);
+	return (1);
+}
+
 int			print_cd(t_lst *lst)
 {
 	char *home;
-	char *path;
 	char *arg;
 
-	if (lst->next)
+	if (lst->next && ft_strncmp((char *)lst->next->maillon, "|", 1))
 		arg = lst->next->maillon;
 	else
 		arg = NULL;
 	home = get_home();
-	if (!arg)
+	if (!arg && g_lst->pipe <= 0)
 		chdir(home);
 	else
 	{
-		path = arg;
-		if (arg[0] == '~')
-			path = ft_strjoin(home, &arg[1]);
-		if (chdir(path) == -1)
-		{
-			error(arg, path, home);
-			g_stt = 1;
+		if (!need_line_print_cd(arg, home))
 			return (1);
-		}
-		if (arg[0] == '~')
-			free(path);
 	}
 	free(home);
 	g_stt = 0;
