@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/22 16:24:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/23 09:28:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,10 @@ int		ft_exit_need_line(char *tmp_str, int i, t_lst *lst)
 	return (1);
 }
 
-void	need_some_line(char *my_path, char **flags, t_lst *lst)
+void	need_some_line(t_lst *lst, int *i, char **tmp_str)
 {
-	if (lst->pipe)
-	{
-		free(my_path);
-		free_dbl_ptr(flags);
-	}
+	*tmp_str = NULL;
+	*i = -1;
 	if (!g_lst->pipe)
 		ft_putstr_fd("exit\n", 1);
 }
@@ -70,24 +67,24 @@ int		ft_exit(t_lst *lst, char *my_path, char **flags)
 	int		i;
 	char	*tmp_str;
 
-	i = -1;
-	need_some_line(my_path, flags, lst);
-	tmp_str = (char *)lst->next->maillon;
-	while (tmp_str[++i])
+	need_some_line(lst, &i, &tmp_str);
+	if (lst->next)
+		tmp_str = (char *)lst->next->maillon;
+	while (lst->next && tmp_str[++i])
 	{
 		if ((tmp_str[i] == '-' || tmp_str[i] == '+') && i == 0)
 			i++;
 		if (!ft_exit_need_line(tmp_str, i, lst))
 			return (1);
 	}
-	if (lst->next->next && (g_stt = 1) == 1 &&
+	if (tmp_str && lst->next->next && (g_stt = 1) == 1 &&
 	ft_strncmp(lst->next->next->maillon, "|", 1))
 		ft_putstr_fd("bash: exit: too many argument\n", 2);
 	if (!lst->pipe && g_lst->pipe)
-		g_stt = ft_atoi(tmp_str);
+		g_stt = (tmp_str == NULL ? g_stt : ft_atoi(tmp_str));
 	else if (tmp_str)
-		ft_exit2(ft_atoi(tmp_str));
+		ft_exit3(ft_atoi(tmp_str), flags, my_path, 1);
 	else
-		ft_exit2(0);
+		ft_exit3(g_stt, flags, my_path, 1);
 	return (1);
 }
