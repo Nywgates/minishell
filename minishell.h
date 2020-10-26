@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/22 16:35:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/26 10:06:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int				error_token(char *line);
 int				skip_quote(char *line, int *i);
 int				check_blank(char *line, int b);
 void			ft_env_tri(char **arg, int i, int n, char **env);
-void			ft_env_bis(char **arg, int i, int n, char **env);
+void			ft_env_bis(char **arg, int i, int *n, char **env);
 void			ft_env2(char **arg, int i, int n, char **env);
 int				free_env(char **env, char *line);
 void			ft_exit2(int i);
