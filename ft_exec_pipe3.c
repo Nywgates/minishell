@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec_pipe3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:23:12 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/09/08 13:23:51 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/29 11:08:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	mouv_maillon(t_lst **lst, t_var *var, char *my_path, char **flags)
 	var->fdleft[0] = var->fdright[0];
 	var->fdleft[1] = var->fdright[1];
 	free(my_path);
-	free_dbl_ptr(flags);
+	if (flags)
+		free_dbl_ptr(flags);
 }
 
 void	init_var_exec(t_var *var, char ***env)

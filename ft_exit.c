@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 10:01:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 11:09:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_exit2(int i)
 
 void	ft_exit3(int i, char **flags, char *my_path, int bl)
 {
-	free_dbl_ptr(flags);
+	if (flags)
+		free_dbl_ptr(flags);
 	free(my_path);
 	if (bl)
 		ft_exit2(i);

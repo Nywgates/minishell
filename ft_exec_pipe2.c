@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 09:10:18 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 11:38:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 	if (!ft_strncmp(lst->maillon, "echo", 4) && ft_strlen(lst->maillon) == 4)
 	{
 		print_echo(lst, var);
+		free(my_path);
 		if (var.fd_out[var.pos] != 1)
 			close(var.fd_out[var.pos]);
 		return (1);
@@ -99,6 +100,11 @@ void	exec_fils(t_lst *lst, char *my_path, char **flags, t_var var)
 	{
 		if (var.fd_out[var.pos] != 1)
 			dup2(var.fd_out[var.pos], 1);
+	}
+	if (err_pipe(lst, &my_path, 0))
+	{
+		ft_exit3(0, flags, my_path, 1);
+		exit(1);
 	}
 	if (built_in(lst, var, my_path, flags))
 		return ;
