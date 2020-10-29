@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/26 09:13:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 09:57:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,18 @@ void	ft_exit3(int i, char **flags, char *my_path, int bl)
 		ft_exit2(i);
 }
 
-int		ft_exit_need_line(char *tmp_str, int i, t_lst *lst)
+int		ft_exit_need_line(int i, t_lst *lst, char **flags, char *my_path)
 {
+	char *tmp_str;
+
+	tmp_str = (char *)lst->next->maillon;
 	if (!ft_isdigit(tmp_str[i]) && tmp_str[0] != '|')
 	{
 		ft_putstr_fd("bash: exit: ", 2);
 		ft_putstr_fd(tmp_str, 2);
 		ft_putstr_fd(": numeric argument required\n", 2);
 		if (!(!lst->pipe && g_lst->pipe))
-			ft_exit2(2);
+			ft_exit3(2, flags, my_path, 1);
 		else
 		{
 			g_stt = 2;
@@ -74,7 +77,7 @@ int		ft_exit(t_lst *lst, char *my_path, char **flags)
 	{
 		if ((tmp_str[i] == '-' || tmp_str[i] == '+') && i == 0)
 			i++;
-		if (!ft_exit_need_line(tmp_str, i, lst))
+		if (!ft_exit_need_line(i, lst, flags, my_path))
 			return (1);
 	}
 	if (tmp_str && lst->next->next && (g_stt = 1) == 1 &&
