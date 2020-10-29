@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:28 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 09:11:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 09:20:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,15 @@ void	filter(char *commande, char ***env)
 	fd = fdp(argument);
 	while (argument[++i])
 	{
-		if (ft_strlen(argument[i]) > 0)
-		{
-			if (ft_strncmp(argument[i], ">", 1))
-				ft_lstadd_back(&lst, ft_lstnew(argument[i]));
-			else
-				while (argument[i] && !ft_strncmp(argument[i], ">", 1))
-					i++;
-			if (!argument[i] && check_chev(argument))
-				break ;
-		}
+		if (ft_strlen(argument[i]) <= 0)
+			continue;
+		if (ft_strncmp(argument[i], ">", 1))
+			ft_lstadd_back(&lst, ft_lstnew(argument[i]));
+		else
+			while (argument[i] && !ft_strncmp(argument[i], ">", 1))
+				i++;
+		if (!argument[i] && check_chev(argument))
+			break ;
 	}
 	ft_lstadd_back(&lst, NULL);
 	filter_bis(lst, fd, argument, env);
