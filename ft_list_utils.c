@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qgimenez <qgimenez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 09:22:07 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/08 07:52:07 by qgimenez         ###   ########.fr       */
+/*   Updated: 2020/10/29 08:52:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_lst	*ft_lstnew(void *content)
 	if (!(element = malloc(sizeof(t_lst))))
 		return (NULL);
 	element->maillon = ft_substr(content, 0, ft_strlen(content));
+	element->pipe = 0;
 	element->next = NULL;
 	return (element);
 }
