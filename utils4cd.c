@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/29 08:52:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 09:30:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ char		*get_home(void)
 	char	buf[100];
 	int		i;
 
+	i = -1;
+	while (++i < 100)
+		buf[i] = '\0';
 	i = 7;
 	home = getcwd(buf, sizeof(buf));
 	while (home[i])
