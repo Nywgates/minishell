@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 17:43:19 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 09:57:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 10:01:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int		ft_exit(t_lst *lst, char *my_path, char **flags)
 	if (tmp_str && lst->next->next && (g_stt = 1) == 1 &&
 	ft_strncmp(lst->next->next->maillon, "|", 1))
 		ft_putstr_fd("bash: exit: too many argument\n", 2);
-	if (!lst->pipe && g_lst->pipe)
+	else if (!lst->pipe && g_lst->pipe)
 		g_stt = (tmp_str == NULL ? g_stt : ft_atoi(tmp_str));
 	else if (tmp_str)
 		ft_exit3(ft_atoi(tmp_str), flags, my_path, 1);
