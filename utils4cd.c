@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:07:31 by laballea          #+#    #+#             */
-/*   Updated: 2020/10/29 09:30:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/29 09:37:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,12 @@ int			print_cd(t_lst *lst)
 	char *home;
 	char *arg;
 
+	if (lst->next && lst->next->next)
+	{
+		ft_putstr_fd("minishell: cd: trop d'arguments\n", 2);
+		g_stt = 1;
+		return (1);
+	}
 	if (lst->next && ft_strncmp((char *)lst->next->maillon, "|", 1))
 		arg = lst->next->maillon;
 	else
