@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 15:03:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 15:23:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ void	comp_pipe(t_lst *lst, t_var *var)
 
 int		err_pipe(t_lst *lst, char **my_path, int bl)
 {
-	if (!bl)
-		free(*my_path);
 	if (!(*my_path = env_path(lst)))
 	{
 		if (!bl)
+		{
+			free(*my_path);
 			return (1);
+		}
 		if (!ft_strncmp(lst->maillon, "|", 1))
 		{
 			g_stt = 258;
