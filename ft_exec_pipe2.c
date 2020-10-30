@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/30 16:08:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 16:45:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	ft_wait_pid(t_fils *fiston, char *name)
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			waitpid(fiston->pid, &status, 0);
 		if (WIFEXITED(status) && !check_built_in(name))
-			g_stt = WEXITSTATUS(status);
+		{
+			if (!g_err)
+				g_stt = WEXITSTATUS(status);
+		}
 		fiston = fiston->next;
 	}
 	fiston = tmp;
