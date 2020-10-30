@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/29 10:15:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 11:27:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int		check_dol(char **argument, int i, int n)
 			else
 				ft_putstr_fd(" : Aucun fichier ou dossier de ce type\n", 2);
 			free_dbl_ptr(nsm);
+			free(arg);
 			return (0);
 		}
+		free(arg);
 	}
 	return (1);
 }
@@ -105,18 +107,26 @@ char	*del_quote(char *str)
 {
 	int i;
 	int n;
+	char *tmp;
+	int t;
 
+	t = 0;
 	i = 0;
+	tmp = malloc(sizeof(char) * (ft_strlen(str)));
+	ft_bzero(tmp, ft_strlen(str));
 	while (str[i])
 	{
 		n = i;
 		if (!skip(str, &i))
 			break ;
-		if (str[n] == '"' || str[n] == '\'')
-			str[n] = '\b';
-		if (str[i] == '"' || str[i] == '\'')
-			str[i] = '\b';
+		if (n != i)
+		{
+			while (++n < i)
+				tmp[t++] = str[n];
+		}
+		if (!(str[i] == '"' || str[i] == '\''))
+			tmp[t++] = str[i];
 		i++;
 	}
-	return (str);
+	return (tmp);
 }
