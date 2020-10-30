@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 14:01:01 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 11:27:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 11:58:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int		check_dol(char **argument, int i, int n)
 
 	if ((argument[i][0] == '>' || argument[i][0] == '<') && argument[i + 1])
 	{
+		if ((argument[i + 1][0] == '>') && argument[i + 2])
+			i++;
 		n = 0;
 		arg = del_quote(argument[i + 1]);
-		while (arg[n] == '\b')
-			n++;
 		if (ft_strlen(arg) == 0 || n == (int)ft_strlen(arg))
 		{
 			nsm = ft_set_split(g_nsm, " <>|", "<>|");
@@ -32,8 +32,6 @@ int		check_dol(char **argument, int i, int n)
 				ft_putstr_fd(nsm[i + 1], 2);
 				ft_putstr_fd(" :redirection ambiguë\n", 2);
 			}
-			else
-				ft_putstr_fd(" : Aucun fichier ou dossier de ce type\n", 2);
 			free_dbl_ptr(nsm);
 			free(arg);
 			return (0);
@@ -105,16 +103,16 @@ char	**get_env(char *name, char **env)
 
 char	*del_quote(char *str)
 {
-	int i;
-	int n;
-	char *tmp;
-	int t;
+	int		i;
+	int		n;
+	char	*tmp;
+	int		t;
 
 	t = 0;
-	i = 0;
-	tmp = malloc(sizeof(char) * (ft_strlen(str)));
-	ft_bzero(tmp, ft_strlen(str));
-	while (str[i])
+	i = -1;
+	ft_bzero(tmp = malloc(sizeof(char) * (ft_strlen(str) + 1))
+	, ft_strlen(str) + 1);
+	while (str[++i])
 	{
 		n = i;
 		if (!skip(str, &i))
@@ -126,7 +124,6 @@ char	*del_quote(char *str)
 		}
 		if (!(str[i] == '"' || str[i] == '\''))
 			tmp[t++] = str[i];
-		i++;
 	}
 	return (tmp);
 }
