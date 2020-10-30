@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 08:55:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 09:41:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char			**g_env;
 char			**g_cmd;
 char			**g_arg;
 t_var			g_fd;
+t_fils			*g_fiston;
 t_lst			*g_lst;
 char			*g_save;
 char			*g_nsm;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 08:30:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 09:42:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 {
 	char		*my_path;
 	char		**flags;
-	t_fils		*fiston;
 	char		*name;
 
-	fiston = NULL;
+	g_fiston = NULL;
 	my_path = NULL;
 	init_var_exec(&var, env);
 	while (lst && init_pipe(lst, &var))
@@ -79,12 +78,12 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 		if (check_var_pid(lst, var, my_path, flags))
 			ft_exit3(1, flags, my_path, 1);
 		else if (var.pid != 0)
-			ft_pidadd_back(&fiston, ft_pidnew(var.pid));
+			ft_pidadd_back(&g_fiston, ft_pidnew(var.pid));
 		name = lst->maillon;
 		mouv_maillon(&lst, &var, my_path, flags);
 		var.pos++;
 	}
-	ft_wait_pid(fiston, name);
-	ft_pidclear(&fiston);
+	ft_wait_pid(g_fiston, name);
+	ft_pidclear(&g_fiston);
 	return (0);
 }

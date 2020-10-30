@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:23:12 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 08:57:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 09:43:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	init_var_exec(t_var *var, char ***env)
 
 void	exit_trois_un(int i, char **flags, char *my_path, int bl)
 {
+	if (bl)
+	{
+		ft_pidclear(&g_fiston);
+		g_stt = 127;
+	}
 	ft_exit3(i, flags, my_path, bl);
 	exit(1);
 }
