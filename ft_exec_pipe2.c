@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/30 09:55:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 10:07:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,11 @@ int		comp_len(char *str, size_t l, t_lst *lst)
 
 int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 {
+	if (check_built_in((char *)lst->maillon))
+		free(my_path);
 	if (!ft_strncmp(lst->maillon, "echo", 4) && ft_strlen(lst->maillon) == 4)
 	{
 		print_echo(lst, var);
-		free(my_path);
 		if (var.fd_out[var.pos] != 1)
 			close(var.fd_out[var.pos]);
 		return (1);
@@ -77,10 +78,7 @@ int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 	else if (comp_len("exit", 4, lst))
 		return (ft_exit(lst, my_path, flags));
 	else if (comp_len("cd", 2, lst))
-	{
-		free(my_path);
 		return (print_cd(lst));
-	}
 	else
 		return (0);
 }
