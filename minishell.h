@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/29 11:24:21 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 08:55:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,4 +184,6 @@ int				check_new_line(char **arg, int i);
 int				check_pipe_main(char *line);
 int				skip(char *line, int *i);
 char			*del_quote(char *str);
+void			exit_trois_un(int i, char **flags, char *my_path, int bl);
+
 #endif

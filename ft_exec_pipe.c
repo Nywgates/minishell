@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:52:51 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/29 11:31:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 08:30:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ int		exec_bin_pipe(t_lst *lst, t_var var, char ***env)
 	init_var_exec(&var, env);
 	while (lst && init_pipe(lst, &var))
 	{
+		flags = NULL;
 		if (!err_pipe(lst, &my_path, 1))
 			flags = capture_the_flag(lst, my_path);
-		else
-			flags = NULL;
 		comp_pipe(lst, &var);
 		if (check_var_pid(lst, var, my_path, flags))
 			ft_exit3(1, flags, my_path, 1);

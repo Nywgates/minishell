@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/29 11:38:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 08:55:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,22 +96,15 @@ void	exec_fils(t_lst *lst, char *my_path, char **flags, t_var var)
 		close(var.fdleft[0]);
 		close(var.fdleft[1]);
 	}
-	if (!check_built_in(lst->maillon))
-	{
-		if (var.fd_out[var.pos] != 1)
-			dup2(var.fd_out[var.pos], 1);
-	}
+	if (!check_built_in(lst->maillon) && var.fd_out[var.pos] != 1)
+		dup2(var.fd_out[var.pos], 1);
 	if (err_pipe(lst, &my_path, 0))
-	{
-		ft_exit3(0, flags, my_path, 1);
-		exit(1);
-	}
+		exit_trois_un(0, flags, my_path, 1);
 	if (built_in(lst, var, my_path, flags))
 		return ;
 	else if (my_path && execve(my_path, flags, var.env) == -1)
 	{
 		perror("execve\n");
-		ft_exit3(0, flags, my_path, 0);
-		exit(1);
+		exit_trois_un(0, flags, my_path, 0);
 	}
 }
