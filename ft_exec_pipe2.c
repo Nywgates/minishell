@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/30 15:01:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 16:08:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int		comp_len(char *str, size_t l, t_lst *lst)
 
 int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 {
-	if (check_built_in((char *)lst->maillon))
-		free(my_path);
 	if (!ft_strncmp(lst->maillon, "echo", 4) && ft_strlen(lst->maillon) == 4)
 	{
 		print_echo(lst, var);
@@ -76,7 +74,7 @@ int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 	else if (comp_len("export", 6, lst))
 		return (print_export(lst, var.fd_out[var.pos], &var.env));
 	else if (comp_len("exit", 4, lst))
-		return (ft_exit(lst, NULL, flags));
+		return (ft_exit(lst, my_path, flags));
 	else if (comp_len("cd", 2, lst))
 		return (print_cd(lst));
 	else
@@ -99,7 +97,7 @@ void	exec_fils(t_lst *lst, char *my_path, char **flags, t_var var)
 	}
 	if (!check_built_in(lst->maillon) && var.fd_out[var.pos] != 1)
 		dup2(var.fd_out[var.pos], 1);
-	if (err_pipe(lst, &my_path, 0))
+	if (g_err)
 		exit_trois_un(0, flags, my_path, 1);
 	if (built_in(lst, var, my_path, flags))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 12:01:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 16:05:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ t_fils			*g_fiston;
 t_lst			*g_lst;
 char			*g_save;
 char			*g_nsm;
+int				g_err;
 
-int				err_pipe(t_lst *lst, char **my_path, int bl);
+int				err_pipe(t_lst *lst, char **my_path);
 char			*get_path(char *home, char *argument);
 char			*get_current(char *home);
 int				print_cd(t_lst *lst);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 13:23:12 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 15:23:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 16:06:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	mouv_maillon(t_lst **lst, t_var *var, char *my_path, char **flags)
 	var->fdleft[0] = var->fdright[0];
 	var->fdleft[1] = var->fdright[1];
 	free(my_path);
+	g_err = 0;
 	if (flags)
 		free_dbl_ptr(flags);
 }
