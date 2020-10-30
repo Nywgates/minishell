@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 12:24:44 by user42            #+#    #+#             */
-/*   Updated: 2020/10/30 12:21:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/30 15:01:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		built_in(t_lst *lst, t_var var, char *my_path, char **flags)
 	else if (comp_len("export", 6, lst))
 		return (print_export(lst, var.fd_out[var.pos], &var.env));
 	else if (comp_len("exit", 4, lst))
-		return (ft_exit(lst, my_path, flags));
+		return (ft_exit(lst, NULL, flags));
 	else if (comp_len("cd", 2, lst))
 		return (print_cd(lst));
 	else
