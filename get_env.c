@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 15:43:28 by laballea          #+#    #+#             */
-/*   Updated: 2020/11/02 09:53:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/02 10:10:34 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void		ft_env(char **arg, char **env)
 {
 	int		i;
 	int		n;
-	char	mem;
 
 	i = -1;
 	while (arg[++i])
@@ -65,24 +64,11 @@ void		ft_env(char **arg, char **env)
 		n = -1;
 		while (arg[i][++n])
 		{
-			if (arg[i][n] == '\\')
-			{
-				n++;
-				if (arg[i][n] && arg[i][n + 1] && (arg[i][n] == '\''
-				|| arg[i][n] == '\"'))
-					n++;
-				if (!arg[i][n])
-					break ;
-			}
+			if (ft_env_help(arg, &i, &n) == 1)
+				break ;
 			if (arg[i][n] == '\'' || arg[i][n] == '\"')
 			{
-				mem = arg[i][n++];
-				while (arg[i][n] && arg[i][n] != mem)
-				{
-					if (mem == '\"')
-						ft_env_tri(arg, i, n, env);
-					n++;
-				}
+				ft_env_helpbis(arg, i, &n, env);
 				if (!arg[i][n])
 					break ;
 			}

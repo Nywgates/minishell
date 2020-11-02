@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 08:34:39 by qgimenez          #+#    #+#             */
-/*   Updated: 2020/10/30 16:05:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/02 10:10:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,4 +188,7 @@ int				skip(char *line, int *i);
 char			*del_quote(char *str);
 void			exit_trois_un(int i, char **flags, char *my_path, int bl);
 void			chev_r_line(char **arg, int *i, t_var *fd, int n);
+int				ft_env_help(char **arg, int *i, int *n);
+void			ft_env_helpbis(char **arg, int i, int *n, char **env);
+
 #endif
